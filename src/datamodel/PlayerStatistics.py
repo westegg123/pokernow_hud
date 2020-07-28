@@ -7,3 +7,9 @@ class PlayerStatistics:
 
     def add_stat(self, stat):
         self._statistics[stat.name()] = stat.value()
+
+    def name(self):
+        return self._player_name
+
+    def statistics(self):
+        return self._statistics

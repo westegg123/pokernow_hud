@@ -6,7 +6,7 @@ class VpipCalculator(Calculator):
     def __init__(self):
         super(VpipCalculator, self).__init__()
 
-    def calculate_vpip_for(self, player_name):
+    def calculate(self, player_name):
         hand_histories = self.get_all_hand_histories()
 
         vpip_count = 0

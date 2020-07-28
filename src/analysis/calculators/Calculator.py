@@ -8,6 +8,9 @@ class Calculator:
     def __init__(self):
         self._client_connection = ClientConnection(ConfigParser("C:\\Users\\Admin\\dev\\pokernow_hud\\config\\db_connection").get_config_value("db_connection_string"))
 
+    def calculate(self, player_name):
+        pass
+
     def get_all_hand_histories(self):
         documents = []
         cursor = self._client_connection.db().hand_histories.find() ##todo: andkom - insert hand_histories to config

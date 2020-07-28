@@ -14,3 +14,8 @@ class Inserter:
     def insert_hand_histories(self, hand_histories):
         for hand_history in hand_histories:
             self.insert_hand_history(hand_history)
+
+    def insert_player_statistics(self, player_stats):
+        converted_player_stats = DatabaseObjectConverter.convert_player_statistics(player_stats)
+        print(converted_player_stats)
+        self._client.db().player_statistics.insert_one(converted_player_stats) ## todo: andkom - extract constant to file (player_statistics)

@@ -7,3 +7,8 @@ class DatabaseObjectConverter:
                 "flop": hand_history.street_string(hand_history.flop()),
                 "turn": hand_history.street_string(hand_history.turn()),
                 "river": hand_history.street_string(hand_history.river())}
+
+    def convert_player_statistics(player_statistics):
+        converted_player_statistics = player_statistics.statistics().copy()
+        converted_player_statistics["player"] = player_statistics.name()
+        return converted_player_statistics
