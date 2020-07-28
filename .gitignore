@@ -5,3 +5,4 @@ src/db/__pycache__/
 src/parsing/__pycache__/
 venv/
 /data
+/config/db_connection
