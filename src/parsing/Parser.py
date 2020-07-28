@@ -30,20 +30,20 @@ class Parser:
                 preflop_hand_history_actions = []
                 while "starting hand" not in actions[i]:
                     current_action = actions[i]
-                    action = self.get_action_type_from_action(current_action)
-                    if action == False:
+                    parsed_action = self.get_action_type_from_action(current_action)
+                    if parsed_action == False:
                         i = i+1
                         continue
                     player = self.get_player_from_action(current_action)
 
                     players.add(player)
-                    preflop_hand_history_actions.append(PlayerAction(player, action))
+                    preflop_hand_history_actions.append(PlayerAction(player, parsed_action))
                     i = i+1
                 preflop_hand_history_actions.reverse()
                 preflop_hand_histories.append(HandHistory(players, preflop_hand_history_actions))
         return preflop_hand_histories
 
-    def get_action_type_from_action(self,action):
+    def get_action_type_from_action(self, action):
         if "raise" in action:
             return "raise"
         if "fold" in action:
