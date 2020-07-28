@@ -4,3 +4,4 @@ src/datamodel/__pycache__/
 src/db/__pycache__/
 src/parsing/__pycache__/
 venv/
+/data
