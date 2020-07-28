@@ -1,8 +1,10 @@
-src/Main.py
-.idea/
 src/datamodel/__pycache__/
 src/db/__pycache__/
 src/parsing/__pycache__/
+src/analysis/__pycache__/
+src/analysis/calculators/__pycache__/
+src/Main.py
+.idea/
 venv/
 /data
 /config/db_connection
