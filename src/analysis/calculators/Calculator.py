@@ -1,4 +1,4 @@
-from ConfigParser import ConfigParser
+from parsing.ConfigParser import ConfigParser
 from db.ClientConnection import ClientConnection
 
 
