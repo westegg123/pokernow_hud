@@ -5,12 +5,11 @@ from datamodel.PlayerAction import PlayerAction
 
 
 class Parser:
-    ##todo: andkom - implement more than just vpip parsing
     def __init__(self):
         return
 
     def parse(self, csv_path):
-        return self.get_preflop_actions(self.get_all_actions(csv_path))
+        return self.parse_all_hands(self.get_all_actions(csv_path))
 
     def get_all_actions(self, csv_path):
         with open(csv_path, newline='') as file:
@@ -21,38 +20,44 @@ class Parser:
                 actions.append(entry)
             return actions
 
-    ##todo: andkom - also include hands that fold through
-    def get_preflop_actions(self, actions):
-        preflop_hand_histories = []
+    def parse_all_hands(self, actions):
+        actions.reverse() ##view from bottom up, since bottom is first hand
+        hand_histories = []
         for i, action in enumerate(actions):
-            if "flop:" in action:
-                players = set()
-                preflop_hand_history_actions = []
-                while "starting hand" not in actions[i]:
-                    current_action = actions[i]
-                    parsed_action = self.get_action_type_from_action(current_action)
-                    if parsed_action == False:
-                        i = i+1
-                        continue
-                    player = self.get_player_from_action(current_action)
+            if "starting hand #" in action:
+                hand_history = self.parse_hand(actions[i::])
+                hand_histories.append(hand_history)
+        return hand_histories
 
-                    players.add(player)
-                    preflop_hand_history_actions.append(PlayerAction(player, parsed_action))
-                    i = i+1
-                preflop_hand_history_actions.reverse()
-                preflop_hand_histories.append(HandHistory(players, preflop_hand_history_actions))
-        return preflop_hand_histories
+    def parse_hand(self, actions):
+        players = set()
+        street_actions = self.init_street_actions()
+
+        street = 0
+        for i, action in enumerate(actions):
+            if "flop" in action or "turn" in action or "river" in action:
+                street = street + 1
+            if "ending hand #" in action:
+                return HandHistory(players, street_actions[0], street_actions[1], street_actions[2], street_actions[3])
+            parsed_player_action = self.get_action_type_from_action(action)
+            if parsed_player_action:
+                player = self.get_player_from_action(action)
+                players.add(player)
+                street_actions[street].append(PlayerAction(player, parsed_player_action))
 
     def get_action_type_from_action(self, action):
-        if "raise" in action:
+        if " raises" in action or " bets " in action:
             return "raise"
-        if "fold" in action:
+        if " folds" in action:
             return "fold"
-        if "call" in action:
+        if " calls" in action:
             return "call"
-        if "check" in action:
+        if " checks" in action:
             return "check"
         return False
 
     def get_player_from_action(self, action):
         return action.split(" ")[0]
+
+    def init_street_actions(self):
+        return {0:[], 1:[], 2:[], 3:[]}

@@ -19,5 +19,5 @@ class PlayerAction:
         return self._amount
 
     def to_string(self):
-        amount = "" if self.amount() is "" else ":" + self.amount()
+        amount = "" if self.amount() == "" else ":" + self.amount()
         return self.player() + ": " + self.action() + amount
