@@ -1,5 +1,5 @@
-from analysis.Calculator import Calculator
-from datamodel.analysis.Vpip import Vpip
+from analysis.calculators.Calculator import Calculator
+from datamodel.Vpip import Vpip
 
 
 class VpipCalculator(Calculator):

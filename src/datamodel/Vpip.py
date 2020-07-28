@@ -1,4 +1,4 @@
-from datamodel.analysis.Statistic import Statistic
+from datamodel.Statistic import Statistic
 
 
 class Vpip(Statistic):
