@@ -4,7 +4,7 @@ from datamodel.HandHistory import HandHistory
 from datamodel.PlayerAction import PlayerAction
 
 
-class Parser:
+class LogParser:
     def __init__(self):
         return
 
