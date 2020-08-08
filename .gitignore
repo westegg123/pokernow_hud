@@ -8,3 +8,4 @@ src/Main.py
 venv/
 /data
 /config/db_connection
+src/api/__pycache__/Application.cpython-38.pyc
