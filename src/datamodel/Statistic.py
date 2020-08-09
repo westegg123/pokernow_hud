@@ -13,3 +13,6 @@ class Statistic:
 
     def name(self):
         return self._name
+
+    def occurences(self):
+        return self._occurences
