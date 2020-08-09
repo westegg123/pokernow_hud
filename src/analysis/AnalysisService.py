@@ -17,13 +17,14 @@ class AnalysisService:
             self.run()
 
     def run(self):
-        print("Updating")
-        player_stats = PlayerStatistics("Andreas")
-        for calculator in self._calculators:
-            statistic = calculator.calculate("Andreas") ##todo: andkom - run for all names
-            player_stats.add_stat(statistic)
-        self.update_player_statistic(player_stats)
-        print("Updated")
+        for name in ["Andreas", "Yutes", "sotiri", "Steven"]:
+            print("Updating " + name)
+            player_stats = PlayerStatistics(name)
+            for calculator in self._calculators:
+                statistic = calculator.calculate(name) ##todo: andkom - run for all names
+                player_stats.add_stat(statistic)
+            self.update_player_statistic(player_stats)
+            print("Updated " + name)
 
     def update_player_statistic(self, player_statistics):
         return self._inserter.insert_player_statistics(player_statistics)
