@@ -6,7 +6,7 @@ class PlayerStatistics:
         self._player_name = name
 
     def add_stat(self, stat):
-        self._statistics[stat.name()] = stat.value(), stat.occurences()
+        self._statistics[stat.name()] = {"value": stat.value(), "occurences": stat.occurences()}
 
     def name(self):
         return self._player_name
