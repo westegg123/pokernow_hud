@@ -9,4 +9,4 @@ venv/
 /data
 /config/
 src/api/__pycache__/
-frontend/
+src/frontend
