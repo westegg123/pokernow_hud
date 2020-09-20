@@ -5,8 +5,8 @@ class PlayerAction:
 
     ##todo: andkom - add amount to player action
     def __init__(self, player, action):
-        self._player = player
-        self._action = action
+        self._player = player.replace('"', "").replace("'", "")
+        self._action = action.replace('"', "").replace("'", "")
         self._amount = ""
 
     def action(self):

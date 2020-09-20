@@ -6,7 +6,7 @@ class HandHistory:
     _river = []
 
     def __init__(self, players, preflop, flop, turn, river):
-        self._players = players
+        self._players = [player.replace("'", "").replace('"', "") for player in players]
         self._preflop = preflop
         self._flop = flop
         self._turn = turn
