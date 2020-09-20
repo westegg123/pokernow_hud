@@ -21,7 +21,7 @@ class AnalysisService:
             print("Updating " + name)
             player_stats = PlayerStatistics(name)
             for calculator in self._calculators:
-                statistic = calculator.calculate(name) ##todo: andkom - run for all names
+                statistic = calculator.calculate(name, 8) ##todo: andkom - run for all names
                 player_stats.add_stat(statistic)
             self.update_player_statistic(player_stats)
             print("Updated " + name)

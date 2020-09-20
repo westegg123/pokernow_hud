@@ -6,12 +6,14 @@ class Pf3bCalculator(Calculator):
     def __init__(self):
         super(Pf3bCalculator, self).__init__()
 
-    def calculate(self, player_name):
+    def calculate(self, player_name, min_players):
         hand_histories = self.get_all_hand_histories()
 
         pf3b_count = 0
         hand_count = 0
         for hand_history_dict in hand_histories:
+            if (not self.has_enough_players(hand_history_dict, min_players)):
+                continue
             raise_tree = self.parse_raise_history(hand_history_dict)
             if len(raise_tree) >= 2:
                 pf3b_tier = raise_tree[1]
