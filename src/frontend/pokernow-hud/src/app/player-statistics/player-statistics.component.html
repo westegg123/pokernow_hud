@@ -1,0 +1,9 @@
+<h2>My Statistics</h2>
+<ul class="player-statistics">
+	<md-card *ngFor="let stats of player_statistics">
+		<span class="badge">{{stats.player}}</span>
+		<div *ngFor="let category of stats.stats | keyvalue">
+				{{category.key}} value: {{category.value.value | number : '.4' }} <br> occurences: {{category.value.occurences}}
+		</div>
+	</md-card>
+</ul>
