@@ -9,4 +9,5 @@ venv/
 /data
 /config/
 src/api/__pycache__/
-src/frontend
+src/frontend/pokernow-hud/e2e
+src/frontend/pokernow-hud/node_modules
