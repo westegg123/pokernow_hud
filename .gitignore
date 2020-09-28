@@ -5,6 +5,7 @@ src/analysis/__pycache__/
 src/analysis/calculators/__pycache__/
 src/Main.py
 .idea/
+venv/
 /data
 /config/
 src/api/__pycache__/
