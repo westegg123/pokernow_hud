@@ -17,7 +17,7 @@ class AnalysisService:
             self.run()
 
     def run(self):
-        for name in ["Andreas", "Yutes", "sotiri", "Steven", "Ahmet", "Jim", "btakao", "Ran"]:
+        for name in ["Andreas", "Yutes", "sotiri", "Steven", "Ahmet", "Jim", "btakao", "Ran", "aakash", "Jake"]:
             print("Updating " + name)
             player_stats = PlayerStatistics(name)
             for calculator in self._calculators:
