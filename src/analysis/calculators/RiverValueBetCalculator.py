@@ -11,6 +11,8 @@ class RiverValueBetCalculator(Calculator):
         final_river_aggressor = 0
         showdown_win_when_called = 0
         for hand_history_dict in hand_histories:
+            if (not self.has_enough_players(hand_history_dict, min_players)):
+                continue
             if self.final_river_aggressor(hand_history_dict) == player_name and self.called(hand_history_dict):
                 final_river_aggressor += 1
                 if hand_history_dict["winner"] == player_name:
