@@ -20,7 +20,7 @@ class Application:
         @self._app.route('/api/statistics/all', methods=["GET"])
         def get_all_statistics():
             all_stats = self._retriever.retrieve_all_player_statistics()
-            dumps = json_util.dumps(self._retriever.retrieve_all_player_statistics())
+            dumps = json_util.dumps(all_stats)
             response = flask.Response(dumps)
             response.headers['Access-Control-Allow-Origin'] = '*'  ##todo: andkom - better access restriction
             print(response)
