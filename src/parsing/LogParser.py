@@ -6,7 +6,7 @@ from datamodel.PlayerAction import PlayerAction
 
 class LogParser:
     def __init__(self):
-        return
+        self._player_mappings = {}
 
     def parse(self, csv_path):
         return self.parse_all_hands(self.get_all_actions(csv_path))
@@ -17,7 +17,8 @@ class LogParser:
             actions = []
             for row in reader:
                 entry = list(row)[0]
-                actions.append(entry)
+                timestamp = list(row)[1]
+                actions.append(entry + ',' + timestamp)
             return actions
 
     def parse_all_hands(self, actions):
@@ -32,13 +33,17 @@ class LogParser:
     def parse_hand(self, actions):
         players = set()
         street_actions = self.init_street_actions()
+        winner = ""
 
         street = 0
         for i, action in enumerate(actions):
             if "flop" in action or "turn" in action or "river" in action:
                 street = street + 1
+            if "collected " in action:
+                winner = self.get_player_from_action(action)
             if "ending hand #" in action:
-                return HandHistory(players, street_actions[0], street_actions[1], street_actions[2], street_actions[3])
+                hand_timestamp = action.split(',')[1]
+                return HandHistory(players, street_actions[0], street_actions[1], street_actions[2], street_actions[3], hand_timestamp, winner)
             parsed_player_action = self.get_action_type_from_action(action)
             if parsed_player_action:
                 player = self.get_player_from_action(action)
@@ -57,7 +62,7 @@ class LogParser:
         return False
 
     def get_player_from_action(self, action):
-        return action.split(" ")[0]
+        return action.split(" ")[0].replace('"', "")
 
     def init_street_actions(self):
         return {0:[], 1:[], 2:[], 3:[]}
